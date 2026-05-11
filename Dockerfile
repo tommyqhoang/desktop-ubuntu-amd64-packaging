@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 
 COPY entrypoint.sh /entrypoint.sh
 
@@ -10,7 +10,7 @@ RUN apt update && apt install -y software-properties-common lsb-release \
 # add electron unit test dependencies
 RUN apt install -y libasound2 libatk-bridge2.0-0 libatk1.0-0 \
     libatspi2.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libdrm2 \
-    libexpat1 libgbm1 libgcc1 libglib2.0-0 libgtk-3-0 libnspr4 \
+    libexpat1 libgbm1 libgcc-s1 libglib2.0-0 libgtk-3-0 libnspr4 \
     libnss3 libpango-1.0-0 libx11-6 libxcb1 libxcomposite1 \
     libxdamage1 libxext6 libxfixes3 libxkbcommon0 libxrandr2 \
     libsecret-1-0
@@ -26,7 +26,9 @@ ENV FC=gfortran
 ENV PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
 ENV npm_config_arch=x64
 
-# This version supports older GLIBC (official builds required a minimum of GLIBC 2.28)
+# This version uses the glibc-217 Node build for broad compatibility.
+# Native modules compiled in this container will require GLIBC >= 2.35 (Ubuntu 22.04 baseline).
+# Official builds required a minimum of GLIBC 2.28
 # this should be the same major version as is used in desktop/desktop
 # https://github.com/desktop/desktop/blob/development/.node-version
 #
