@@ -15,15 +15,15 @@ RUN apt install -y libasound2 libatk-bridge2.0-0 libatk1.0-0 \
     libxdamage1 libxext6 libxfixes3 libxkbcommon0 libxrandr2 \
     libsecret-1-0
 
-# Electron 44's V8 headers don't compile with Ubuntu 22.04's default g++ 11
-RUN apt install -y gcc-12 g++-12
+# Electron 44's V8 headers don't compile with Ubuntu 22.04's g++ 11/12
+RUN add-apt-repository ppa:ubuntu-toolchain-r/test -y && apt update && apt install -y gcc-13 g++-13
 
 ENV AS=as
 ENV STRIP=strip
 ENV AR=ar
-ENV CC=gcc-12
-ENV CPP=cpp-12
-ENV CXX=g++-12
+ENV CC=gcc-13
+ENV CPP=cpp-13
+ENV CXX=g++-13
 # Electron 44 V8 headers require C++20
 ENV CXXFLAGS="-std=gnu++20"
 ENV LD=ld
