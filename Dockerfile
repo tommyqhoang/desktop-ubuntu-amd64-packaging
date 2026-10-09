@@ -15,12 +15,15 @@ RUN apt install -y libasound2 libatk-bridge2.0-0 libatk1.0-0 \
     libxdamage1 libxext6 libxfixes3 libxkbcommon0 libxrandr2 \
     libsecret-1-0
 
+# Electron 44's V8 headers don't compile with Ubuntu 22.04's default g++ 11
+RUN apt install -y gcc-12 g++-12
+
 ENV AS=as
 ENV STRIP=strip
 ENV AR=ar
-ENV CC=gcc
-ENV CPP=cpp
-ENV CXX=g++
+ENV CC=gcc-12
+ENV CPP=cpp-12
+ENV CXX=g++-12
 ENV LD=ld
 ENV FC=gfortran
 ENV PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
