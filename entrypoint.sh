@@ -1,6 +1,7 @@
 #!/bin/sh
 
 git config --global --add safe.directory /github/workspace
+git config --global --add safe.directory '*'
 
 yarn
 yarn run postinstall
