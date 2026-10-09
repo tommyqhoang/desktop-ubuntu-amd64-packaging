@@ -24,6 +24,8 @@ ENV AR=ar
 ENV CC=gcc-12
 ENV CPP=cpp-12
 ENV CXX=g++-12
+# Electron 44 V8 headers require C++20
+ENV CXXFLAGS="-std=gnu++20"
 ENV LD=ld
 ENV FC=gfortran
 ENV PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
